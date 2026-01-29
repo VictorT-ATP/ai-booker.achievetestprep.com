@@ -32,6 +32,7 @@ dictConfig(
     }
 )
 
+
 def create_app():
     app = Flask(__name__)
     app.logger.setLevel(logging.DEBUG if os.getenv(
@@ -44,22 +45,22 @@ def create_app():
 
     app.register_blueprint(home_bp, url_prefix='/')
 
-    # features: Leads
-    from features.leads import leads_bp
-    app.register_blueprint(leads_bp, url_prefix='/leads')
+    # features: Administration
+    from features.admin import admin_bp
+    app.register_blueprint(admin_bp, url_prefix='/admin')
 
     # features: Batch Service
-    from features.batch_service import batch_service_bp
-    app.register_blueprint(batch_service_bp, url_prefix='/batch_service')
+    from features.call_service import call_service_bp
+    app.register_blueprint(call_service_bp, url_prefix='/call_service')
 
     # features: Manual Execution
-    from features.manual_exec import manual_exec_bp
-    app.register_blueprint(manual_exec_bp, url_prefix='/manual_exec')
+    from features.test_zone import test_zone_bp
+    app.register_blueprint(test_zone_bp, url_prefix='/test_zone')
 
     # features: Calls Log
     from features.conversations_log import conversations_log_bp
-    app.register_blueprint(conversations_log_bp, url_prefix='/conversations_log')
-
+    app.register_blueprint(conversations_log_bp,
+                           url_prefix='/conversations_log')
     # features: Analytics
     from features.statistics import statistics_bp
     app.register_blueprint(statistics_bp, url_prefix='/statistics')
@@ -69,6 +70,7 @@ def create_app():
 
     return app
 
+
 if __name__ == "__main__":
     main_app = create_app()
-    main_app.run(port=8000)
+    main_app.run(port=5000)

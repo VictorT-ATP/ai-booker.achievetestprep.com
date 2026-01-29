@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,41 +10,59 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>AI Booker - {{ title }} / Achieve Test Prep</title>
   </head>
   <body class="content">
     <div id="layout" class="pure-g">
-      <div class="pure-u-1"><h3 class="px-md">AI Booker</h3></div>
-      <div class="pure-u-1 pure-g">
-        <nav class="pure-menu bg-secondary px-sm py-md left-dock">
+      <h2 class="pure-u-1 center color-primary">ANNA BOOKER CONTROL CENTER</h3>
+      <div class="pure-u-1 pure-g center">
+        <nav class="pure-menu pure-menu-horizontal center">
           <ul class="pure-menu-list">
             <li class="pure-menu-item py-sm">
               <a class="pure-menu-link pure-menu-selected" href="/"
-                >Dashboard</a
+                ><i class="fa-regular fa-house"></i>Dashboard</a
               >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link" href="/leads">Leads to Contact</a>
-            </li>
-            <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link" href="/batch_service">Batch Service</a>
-            </li>
-            <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link" href="/manual_exec">Manual Contact</a>
+              <a class="pure-menu-link" href="/call_service"
+                ><i class="fa-regular fa-house"></i>Call Service</a
+              >
             </li>
             <li class="pure-menu-item py-sm">
               <a class="pure-menu-link" href="/conversations_log"
-                >Conversations Log</a
+                ><i class="fa-regular fa-house"></i>Conversations</a
               >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link" href="/statistics">Statistics</a>
+              <a class="pure-menu-link" href="/statistics"
+                ><i class="fa-regular fa-house"></i>Stats</a
+              >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link" href="/settings">Settings</a>
+              <a class="pure-menu-link" href="/test_zone"
+                ><i class="fa-regular fa-house"></i>Test Zone</a
+              >
+            </li>
+            <li class="pure-menu-item py-sm">
+              <a class="pure-menu-link" href="/settings"
+                ><i class="fa-regular fa-house"></i>Settings</a
+              >
+            </li>
+            <li class="pure-menu-item py-sm">
+              <a class="pure-menu-link" href="/admin"
+                ><i class="fa-regular fa-house"></i>Admin</a
+              >
             </li>
           </ul>
         </nav>
+
         <main class="px-lg pure-u">
           <h1>This is {{ title }}</h1>
           {% block body %} {% endblock %}
