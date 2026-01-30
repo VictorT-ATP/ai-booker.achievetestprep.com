@@ -40,20 +40,20 @@ def create_app():
 
     # Register
 
-    # features: Home
-    from features.home import home_bp
+    # features: Dashboard
+    from features.dashboard import dashboard_bp
 
-    app.register_blueprint(home_bp, url_prefix='/')
+    app.register_blueprint(dashboard_bp, url_prefix='/')
 
     # features: Administration
     from features.admin import admin_bp
     app.register_blueprint(admin_bp, url_prefix='/admin')
 
-    # features: Batch Service
+    # features: Call Service
     from features.call_service import call_service_bp
     app.register_blueprint(call_service_bp, url_prefix='/call_service')
 
-    # features: Manual Execution
+    # features: Test Zone
     from features.test_zone import test_zone_bp
     app.register_blueprint(test_zone_bp, url_prefix='/test_zone')
 
@@ -61,10 +61,10 @@ def create_app():
     from features.conversations_log import conversations_log_bp
     app.register_blueprint(conversations_log_bp,
                            url_prefix='/conversations_log')
-    # features: Analytics
+    # features: Statistics
     from features.statistics import statistics_bp
     app.register_blueprint(statistics_bp, url_prefix='/statistics')
-
+    # features: Settings
     from features.settings import settings_bp
     app.register_blueprint(settings_bp, url_prefix='/settings')
 

@@ -7,6 +7,7 @@
   --color-light: white;
   --color-secondary: rgb(62 0 82);
   --color-light-primary: #fff5f2;
+  --color-medium-primary: #ffd8ce;
   --color-shadow: 287deg 28% 66%;
   --shadow-elevation-medium:
     0.4px 0.2px 0.5px hsl(var(--color-shadow) / 0.31),
@@ -18,6 +19,15 @@
 
 h2 {
   color: var(--color-secondary);
+}
+
+main {
+  min-width: 60%;
+  background: var(--color-light);
+  border-radius: 15px;
+  margin-top: 1rem;
+  border: 1px solid var(--color-medium-primary);
+  height: calc(100vh - 48rem);
 }
 
 .center {
@@ -75,7 +85,13 @@ h2 {
   color: var(--color-secondary);
   background-color: transparent;
   border-radius: 7px;
+  padding: 1.2rem 1rem;
 }
+
+.pure-menu-link:focus {
+  background-color: var(--color-medium-primary);
+}
+
 .pure-menu-link:hover {
   background-color: transparent;
 }
@@ -87,7 +103,7 @@ h2 {
 }
 
 [class^='fa-'] {
-  margin-right: 0.5rem;
+  margin-right: 0.4rem;
 }
 
 :not(.pure-menu-selected).pure-menu-link:hover::after {
