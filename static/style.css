@@ -86,6 +86,7 @@ main {
   background-color: transparent;
   border-radius: 7px;
   padding: 1.2rem 1rem;
+  position: relative; /* needed for the absolute ::after underline */
 }
 
 .pure-menu-link:focus {
@@ -98,7 +99,7 @@ main {
 
 .pure-menu-selected,
 .pure-menu-selected:hover {
-  background: var(--color-selection);
+  background-color: var(--color-selection);
   color: var(--color-light);
 }
 
@@ -106,12 +107,78 @@ main {
   margin-right: 0.4rem;
 }
 
-:not(.pure-menu-selected).pure-menu-link:hover::after {
+:not(.pure-menu-selected).pure-menu-link::after {
   content: '';
   position: absolute;
-  bottom: 10px; /* Position at the bottom of the container */
+  bottom: 0; /* Position at the bottom of the container */
   left: 10%; /* Start the border 10% from the left corner */
   right: 10%; /* End the border 10% from the right corner */
   height: 2px; /* The thickness of the "border" */
   background-color: var(--color-selection); /* The color of the "border" */
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 160ms ease-in;
+  pointer-events: none;
+}
+
+/* On hover, scale the underline in (ease-in) */
+:not(.pure-menu-selected).pure-menu-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* From Uiverse.io by gharsh11032000 */
+/* The switch - the box around the slider */
+.switch {
+  font-size: 40px;
+  position: relative;
+  display: inline-block;
+  width: 4.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--color-medium-primary);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 1rem;
+  padding-left: 5.5rem;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  width: 2em;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked + .slider {
+  background: #6cec6c;
+  padding-left: 1rem;
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px var(--color-medium-primary);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(2.6em);
 }
