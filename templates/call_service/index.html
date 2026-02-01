@@ -1,6 +1,26 @@
 {% extends 'container.html' %} {% block body %}
-<label class="switch">
-  <input type="checkbox" />
-  <span class="slider">OFF</span>
-</label>
-{% endblock %}
+<div id="app" class="pure-g center">
+  <h3 class="slide-container-lg px-lg">Service State:</h3>
+  <label class="switch">
+    <input type="checkbox" v-bind:status />
+    <span class="slider">{{ statusTitle }}</span>
+  </label>
+  {% endblock %} {% block script %}
+</div>
+<script>
+  const { createApp, ref, computed } = Vue;
+
+  createApp({
+    setup() {
+      const status = ref(true);
+      const statusTitle = computed(() => {
+        return status == true ? 'ON' : 'OFF';
+      });
+      return {
+        status,
+        statusTitle,
+      };
+    },
+  }).mount('#app');
+</script>
+{% endblock%}

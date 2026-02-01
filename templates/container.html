@@ -17,7 +17,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>AI Booker - {{ title }} / Achieve Test Prep</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>AI Booker - [[ title ]] / Achieve Test Prep</title>
   </head>
   <body class="content">
     <div id="layout" class="pure-g">
@@ -26,48 +27,48 @@
         <nav class="pure-menu pure-menu-horizontal center">
           <ul class="pure-menu-list">
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link {{ 'pure-menu-selected' if title == 'Dashboard' }}" href="/"
+              <a class="pure-menu-link [[ 'pure-menu-selected' if title == 'Dashboard' ]]" href="/"
                 ><i class="fa-regular fa-house"></i>Dashboard</a
               >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link {{ 'pure-menu-selected' if title == 'Call Service' }}" href="/call_service"
-                ><i class="fa-classic fa-phone"></i>Call Service</a
+              <a class="pure-menu-link [[ 'pure-menu-selected' if title == 'Dialer Service' ]]" href="/call_service"
+                ><i class="fa-classic fa-phone"></i>Dialer Service</a
               >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link {{ 'pure-menu-selected' if title == 'Conversations' }}" href="/conversations_log"
+              <a class="pure-menu-link [[ 'pure-menu-selected' if title == 'Conversations' ]]" href="/conversations_log"
                 ><i class="fa-classic fa-clock-rotate-left"></i>Conversations</a
               >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link {{ 'pure-menu-selected' if title == 'Statistics' }}" href="/statistics"
+              <a class="pure-menu-link [[ 'pure-menu-selected' if title == 'Statistics' ]]" href="/statistics"
                 ><i class="fa-regular fa-file-lines"></i>Stats</a
               >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link {{ 'pure-menu-selected' if title == 'Test Zone' }}" href="/test_zone"
+              <a class="pure-menu-link [[ 'pure-menu-selected' if title == 'Test Zone' ]]" href="/test_zone"
                 ><i class="fa-classic fa-vial"></i>Test Zone</a
               >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link {{ 'pure-menu-selected' if title == 'Settings' }}" href="/settings"
+              <a class="pure-menu-link [[ 'pure-menu-selected' if title == 'Settings' ]]" href="/settings"
                 ><i class="fa-classic fa-gear"></i>Settings</a
               >
             </li>
             <li class="pure-menu-item py-sm">
-              <a class="pure-menu-link {{ 'pure-menu-selected' if title == 'Administration' }}" href="/admin"
+              <a class="pure-menu-link [[ 'pure-menu-selected' if title == 'Administration' ]]" href="/admin"
                 ><i class="fa-classic fa-mug-hot"></i>Admin</a
               >
             </li>
           </ul>
         </nav>
 
-        <main class="px-lg pure-u">
-          <h1>This is {{ title }}</h1>
+        <main class="px-lg pure-u py-lg">
           {% block body %} {% endblock %}
         </main>
       </div>
     </div>
   </body>
+  {% block script %} {% endblock %}
 </html>

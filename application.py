@@ -35,6 +35,8 @@ dictConfig(
 
 def create_app():
     app = Flask(__name__)
+    app.jinja_env.variable_start_string = '[['
+    app.jinja_env.variable_end_string = ']]'
     app.logger.setLevel(logging.DEBUG if os.getenv(
         "FLASK_DEBUG", "true").lower() == "true" else logging.INFO)
 
@@ -49,7 +51,7 @@ def create_app():
     from features.admin import admin_bp
     app.register_blueprint(admin_bp, url_prefix='/admin')
 
-    # features: Call Service
+    # features: Dialer Service
     from features.call_service import call_service_bp
     app.register_blueprint(call_service_bp, url_prefix='/call_service')
 

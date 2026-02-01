@@ -129,11 +129,11 @@ main {
 /* From Uiverse.io by gharsh11032000 */
 /* The switch - the box around the slider */
 .switch {
-  font-size: 40px;
+  font-size: 30px;
   position: relative;
   display: inline-block;
-  width: 4.5em;
-  height: 2em;
+  width: 5.3em;
+  height: 2.2em;
 }
 
 /* Hide default HTML checkbox */
@@ -152,7 +152,7 @@ main {
   border-radius: 50px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   padding: 1rem;
-  padding-left: 5.5rem;
+  padding-left: 4.7rem;
 }
 
 .slider:before {
@@ -161,8 +161,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2em;
-  width: 2em;
+  height: 2.2em;
+  width: 2.2em;
   inset: 0;
   background-color: white;
   border-radius: 50px;
@@ -170,9 +170,13 @@ main {
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.slide-container-lg {
+  line-height: 1.8rem;
+}
+
 .switch input:checked + .slider {
   background: #6cec6c;
-  padding-left: 1rem;
+  padding-left: 2rem;
 }
 
 .switch input:focus + .slider {
@@ -180,5 +184,5 @@ main {
 }
 
 .switch input:checked + .slider:before {
-  transform: translateX(2.6em);
+  transform: translateX(3.5em);
 }
