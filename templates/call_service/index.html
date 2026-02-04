@@ -2,25 +2,89 @@
 <div id="app" class="pure-g center">
   <h3 class="slide-container-lg px-lg">Service State:</h3>
   <label class="switch">
-    <input type="checkbox" v-bind:status />
+    <input type="checkbox" v-model="status" />
     <span class="slider">{{ statusTitle }}</span>
   </label>
-  {% endblock %} {% block script %}
-</div>
-<script>
-  const { createApp, ref, computed } = Vue;
 
-  createApp({
-    setup() {
-      const status = ref(true);
-      const statusTitle = computed(() => {
-        return status == true ? 'ON' : 'OFF';
-      });
-      return {
-        status,
-        statusTitle,
-      };
-    },
-  }).mount('#app');
-</script>
-{% endblock%}
+  <div class="pure-u-1 py-md" role="group" aria-label="...">
+    <div class="pure-g border-bottom hover-secondary">
+      <a class="pure-menu-link py-sm" :class="{ selected: view === 'queue' }" href="#" @click="view = 'queue'">Current Queue</a>
+      <a class="pure-menu-link py-sm" :class="{ selected: view === 'next' }" href="#" @click="view = 'next'" >Next Leads</a>
+    </div>
+    <div id='queue-view' v-if="view === 'queue'">
+      <div id="a0KQq00000O3SRFMA3" class="pure-g row border-top row-sm p-sm">
+        <div class="pure-u-1-3">
+          <label class="font-bold mb-sm">James Murray</label>
+          <a
+            class="color-primary pure-u-1"
+            href="https://college-prep--c.vf.force.com/a0KQq00000O3SRFMA3"
+            target="_blank"
+            >a0KQq00000O3SRFMA3</a
+          >
+        </div>
+          <div class="pure-u-1-3">
+            <div><i class ="fa-classic fa-sm fa-envelope"></i>jamesem7@hotmail.com</div>
+            <div><i class ="fa-classic fa-sm fa-phone"></i>+12027314907</div>
+            <div><i class ="fa-classic fa-sm fa-location-dot"></i>America/Chicago</div>
+          </div>
+          <div class="pure-u-1-3 row">
+            <div class="pure-u-2-3">
+            <label class="text-gray-400">Status:</label> Called
+            </div><div class = "pure-u-1-3"><i class="fa-classic fa-check fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+      <div id="a0KQq00000O3SRFMA4" class="pure-g row border-top row-sm p-sm">
+        <div class="pure-u-1-3">
+          <label class="font-bold mb-sm">James Murray</label>
+          <a
+            class="color-primary pure-u-1"
+            href="https://college-prep--c.vf.force.com/a0KQq00000O3SRFMA3"
+            target="_blank"
+            >a0KQq00000O3SRFMA3</a
+          >
+        </div>
+          <div class="pure-u-1-3">
+            <div><i class ="fa-classic fa-sm fa-envelope"></i>jamesem7@hotmail.com</div>
+            <div><i class ="fa-classic fa-sm fa-phone"></i>+12027314907</div>
+            <div><i class ="fa-classic fa-sm fa-location-dot"></i>America/Chicago</div>
+          </div>
+          <div class="pure-u-1-3 row">
+            <div class="pure-u-2-3">
+            <label class="text-gray-400">Status:</label> Called
+            </div><div class = "pure-u-1-3"><i class="fa-classic fa-check fa-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div id='next-view' v-if="view === 'next'">
+        <h4>Next Leads to Call</h4>
+      </div>
+      <leadList />
+    </div>
+  </div>
+    {% endblock %} {% block script %}
+  <script setup type="module">
+    import { leadList} from './static/js/components/leadList.js';
+    const { createApp, ref, computed } = Vue;
+    createApp({
+      setup() {
+        const status = ref(true);
+        const view = ref('queue');
+        const statusTitle = computed(() => {
+          return status.value == true ? 'ON' : 'OFF';
+        });
+        return {
+          status,
+          statusTitle,
+          view
+        };
+      },
+      components: {
+        leadList
+      }
+    }).mount('#app');
+  </script>
+  {% endblock%}
+</div>

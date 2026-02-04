@@ -5,19 +5,36 @@
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --color-light: white;
-  --color-secondary: rgb(62 0 82);
-  --color-light-primary: #fff5f2;
+  --color-secondary: rgb(92, 17, 117);
+  --color-medium-secondary: #d7b9e0;
+  --color-light-secondary: #f9ecff;
+  --color-lighter-secondary: #fdf6ff;
+  --color-primary: rgb(243, 76, 34);
   --color-medium-primary: #ffd8ce;
+  --color-light-primary: #fff7f4;
   --color-shadow: 287deg 28% 66%;
   --shadow-elevation-medium:
     0.4px 0.2px 0.5px hsl(var(--color-shadow) / 0.31),
     1.2px 0.6px 1.5px -0.8px hsl(var(--color-shadow) / 0.31),
     3px 1.5px 3.8px -1.7px hsl(var(--color-shadow) / 0.31),
     7.2px 3.7px 9.1px -2.5px hsl(var(--color-shadow) / 0.31);
-  --color-selection: rgb(243, 76, 34);
 }
 
-h2 {
+/* colors */
+.color-secondary {
+  color: var(--color-secondary);
+}
+.color-primary {
+  color: var(--color-primary);
+}
+
+/* tags */
+a {
+  color: var(--color-secondary);
+  text-decoration: none;
+}
+
+body {
   color: var(--color-secondary);
 }
 
@@ -28,12 +45,36 @@ main {
   margin-top: 1rem;
   border: 1px solid var(--color-medium-primary);
   height: calc(100vh - 48rem);
+  min-height: max-content;
+}
+
+main h1,
+main h2 {
+  color: var(--color-primary);
+  filter: saturate(0.75) brightness(1.7);
+}
+
+label {
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.mb-sm {
+  margin-bottom: var(--spacing-sm);
+}
+
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
 }
 
 .p-sm {
@@ -46,28 +87,41 @@ main {
   padding: var(--spacing-lg);
 }
 
+.px-0 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .px-sm {
   padding-left: var(--spacing-sm);
   padding-right: var(--spacing-sm);
-}
-.py-sm {
-  padding-top: var(--spacing-sm);
-  padding-bottom: var(--spacing-sm);
 }
 
 .px-md {
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
 }
-.py-md {
-  padding-top: var(--spacing-md);
-  padding-bottom: var(--spacing-md);
-}
 
 .px-lg {
   padding-left: var(--spacing-lg);
   padding-right: var(--spacing-lg);
 }
+
+.py-0 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.py-sm {
+  padding-top: var(--spacing-sm) !important;
+  padding-bottom: var(--spacing-sm) !important;
+}
+
+.py-md {
+  padding-top: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+}
+
 .py-lg {
   padding-top: var(--spacing-lg);
   padding-bottom: var(--spacing-lg);
@@ -85,21 +139,21 @@ main {
   color: var(--color-secondary);
   background-color: transparent;
   border-radius: 7px;
-  padding: 1.2rem 1rem;
   position: relative; /* needed for the absolute ::after underline */
+  padding: 1.2rem 1rem;
 }
 
-.pure-menu-link:focus {
-  background-color: var(--color-medium-primary);
-}
-
-.pure-menu-link:hover {
+.pure-menu-link:hover,
+.pure-menu-link:focus,
+.pure-menu-link:focus-visible {
   background-color: transparent;
 }
 
 .pure-menu-selected,
-.pure-menu-selected:hover {
-  background-color: var(--color-selection);
+.pure-menu-selected:hover,
+.pure-menu-selected:focus,
+.pure-menu-selected:focus-visible {
+  background-color: var(--color-primary);
   color: var(--color-light);
 }
 
@@ -110,19 +164,23 @@ main {
 :not(.pure-menu-selected).pure-menu-link::after {
   content: '';
   position: absolute;
-  bottom: 0; /* Position at the bottom of the container */
+  bottom: -1px; /* Position at the bottom of the container */
   left: 10%; /* Start the border 10% from the left corner */
   right: 10%; /* End the border 10% from the right corner */
   height: 2px; /* The thickness of the "border" */
-  background-color: var(--color-selection); /* The color of the "border" */
+  background-color: var(--color-primary); /* The color of the "border" */
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 160ms ease-in;
   pointer-events: none;
 }
 
+.hover-secondary > :not(.pure-menu-selected).pure-menu-link::after {
+  background-color: var(--color-secondary);
+}
+
 /* On hover, scale the underline in (ease-in) */
-:not(.pure-menu-selected).pure-menu-link:hover::after {
+:not(.selected):not(.pure-menu-selected).pure-menu-link:hover::after {
   transform: scaleX(1);
 }
 
@@ -184,5 +242,37 @@ main {
 }
 
 .switch input:checked + .slider:before {
-  transform: translateX(3.5em);
+  transform: translateX(3.1em);
+}
+
+.border-bottom {
+  border-bottom: 2px solid var(--color-medium-secondary);
+}
+
+.border-top {
+  border-top: 2px solid var(--color-lighter-secondary);
+}
+
+.selected,
+.selected:hover,
+.selected:focus,
+.selected:focus-visible {
+  background-color: var(--color-light-secondary);
+  border-radius: 0;
+  font-weight: 600;
+}
+
+.row {
+  align-items: center;
+  padding-top: var(--spacing-sm);
+  vertical-align: middle;
+}
+
+.row:hover {
+  background-color: var(--color-light-primary);
+}
+
+.row-sm {
+  font-size: 0.9rem;
+  line-height: 1.3rem;
 }

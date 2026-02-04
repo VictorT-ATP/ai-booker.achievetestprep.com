@@ -1,3 +1,4 @@
+import mimetypes
 from flask import Flask
 from dotenv import load_dotenv
 from logging.config import dictConfig
@@ -5,6 +6,7 @@ import logging
 import os
 
 load_dotenv()
+mimetypes.add_type('text/javascript', '.js')
 
 dictConfig(
     {
