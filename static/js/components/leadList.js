@@ -1,6 +1,6 @@
 const { ref } = Vue
 
-export const leadList = {
+export default {
   setup() {
     const count = ref(0)
     return { count }
