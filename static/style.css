@@ -288,3 +288,87 @@ label {
   font-size: 0.9rem;
   line-height: 1.3rem;
 }
+
+ .pure-menu-link {
+   color: var(--color-secondary);
+   background-color: transparent;
+   border-radius: 7px;
+   position: relative; /* needed for the absolute ::after underline */
+   padding: 1.2rem 1rem;
+ }
+
+.responsive-menu {
+  width: 100%;
+}
+
+.responsive-menu .pure-menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.responsive-menu .pure-menu-item {
+  height: auto;
+}
+
+.responsive-menu .pure-menu-link {
+  white-space: nowrap;
+}
+
+.row-sm {
+  font-size: 0.9rem;
+  line-height: 1.3rem;
+}
+
+@media screen and (max-width: 48em) {
+  h1.pure-u-1,
+  h3.pure-u-1 {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+    text-align: center;
+  }
+
+  .responsive-menu {
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
+    box-sizing: border-box;
+  }
+
+  .responsive-menu .pure-menu-list {
+    align-items: stretch;
+  }
+
+  .responsive-menu .pure-menu-item {
+    flex: 1 1 calc(50% - var(--spacing-sm));
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .responsive-menu .pure-menu-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.85rem 0.6rem;
+    text-align: center;
+  }
+
+  main.pure-u {
+    width: 100%;
+    box-sizing: border-box;
+    margin-left: var(--spacing-sm);
+    margin-right: var(--spacing-sm);
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+}
+
+@media screen and (max-width: 30em) {
+  .responsive-menu .pure-menu-item {
+    flex-basis: 100%;
+  }
+
+  .responsive-menu .pure-menu-link {
+    justify-content: flex-start;
+  }
+}
