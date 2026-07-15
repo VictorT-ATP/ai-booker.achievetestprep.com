@@ -34,7 +34,6 @@ dictConfig(
     }
 )
 
-
 def create_app():
     app = Flask(__name__)
     app.jinja_env.variable_start_string = '[['
