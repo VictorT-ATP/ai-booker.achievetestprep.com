@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 flask = "*"
 dotenv = "*"
+flask-limiter = "*"
+requests = "*"
 
 [dev-packages]
 

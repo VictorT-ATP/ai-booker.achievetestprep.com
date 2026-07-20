@@ -1,5 +1,77 @@
 {% extends 'container.html' %} {% block body %}
+<div id="app" class="center"></div>
+<div class="pure-g">
+    <div class="pure-u-1-2">
+        <h3>Today's Calls Stats</h3>
+        <canvas id="globalView"></canvas>
+    </div>
+    <div class="pure-u-1-2">
+        <h3>Campaigns Distribution</h3>
+        <canvas id="campaignView"></canvas>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<template id="dashboard-template">
+    <button class="pure-button button-xsmall color-primary bg-light-primary" @click="refresh">Refresh</button>
+</template>
+<script type="module" src="static/js/components/dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
 
-<h3>Yes... this is [[ title ]].</h3>
+    // Set a new height
+    const configBase = {
+        backgroundColor: [
+            'rgb(255 99 132/ 0.7)',
+            'rgb(54 162 235/ 0.7)',
+            'rgb(255 205 86 / 0.7)',
+            'rgb(124 211 77 / 0.7)'
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)',
+            'rgb(124 211 77)'
+        ],
+        cutout: '45%',
+        hoverOffset: 4
+    }
+    barCfg = Object.assign({}, configBase)
+    barCfg['indexAxis']='y'
 
+    graphHeight = window.innerHeight * 0.235;
+    let ctx = document.getElementById('globalView');
+    ctx.height = graphHeight;
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Booked', 'Answered', 'Voicemail', 'Failed'],
+            datasets: [{
+                label: '# of Calls',
+                data: [0,11,245,240],
+                borderWidth: 1
+            }]
+        },
+        options: barCfg
+    });
+
+    ctx = document.getElementById('campaignView');
+    ctx.height = graphHeight;
+
+    dntCfg = Object.assign({}, configBase)
+    dntCfg = {...dntCfg, scales: {x: {display: true}}}
+
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Getting Cold', 'Cold Never Spoke to', 'New Lead No Apt Status', 'New Lead First Day'],
+            datasets: [{
+                label: '# of Calls',
+                data: [83,138,260,15],
+                borderWidth: 1
+            }]
+        },
+        options: dntCfg
+    });
+</script>
 {% endblock %}

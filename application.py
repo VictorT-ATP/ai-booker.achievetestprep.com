@@ -1,5 +1,5 @@
 import mimetypes
-from flask import Flask
+from flask import Flask, render_template
 from dotenv import load_dotenv
 from logging.config import dictConfig
 import logging
@@ -34,46 +34,64 @@ dictConfig(
     }
 )
 
+app = Flask(__name__)
+
 def create_app():
-    app = Flask(__name__)
     app.jinja_env.variable_start_string = '[['
     app.jinja_env.variable_end_string = ']]'
     app.logger.setLevel(logging.DEBUG if os.getenv(
         "FLASK_DEBUG", "true").lower() == "true" else logging.INFO)
-
-    # Register
-
-    # features: Dashboard
-    from features.dashboard import dashboard_bp
-
-    app.register_blueprint(dashboard_bp, url_prefix='/')
-
-    # features: Administration
-    from features.admin import admin_bp
-    app.register_blueprint(admin_bp, url_prefix='/admin')
-
-    # features: Dialer Service
-    from features.call_service import call_service_bp
-    app.register_blueprint(call_service_bp, url_prefix='/call_service')
-
-    # features: Test Zone
-    from features.test_zone import test_zone_bp
-    app.register_blueprint(test_zone_bp, url_prefix='/test_zone')
-
-    # features: Calls Log
-    from features.conversations_log import conversations_log_bp
-    app.register_blueprint(conversations_log_bp,
-                           url_prefix='/conversations_log')
-    # features: Statistics
-    from features.statistics import statistics_bp
-    app.register_blueprint(statistics_bp, url_prefix='/statistics')
-    # features: Settings
-    from features.settings import settings_bp
-    app.register_blueprint(settings_bp, url_prefix='/settings')
-
+    app.config['ALLOWED_HOSTS'] = os.getenv("ALLOWED_HOSTS")
     return app
 
+# Dashboard
+@app.route('/')
+def index():
+    data = {
+        'title': 'Dashboard'
+    }
+    return render_template('dashboard/index.html', **data)
+
+# features: Dialer Service
+@app.route('/call_service')
+def call_service():
+    data = {
+        'title': 'Dialer Service'
+    }
+    return render_template('call_service/index.html', **data)
+
+# features: Test Zone
+@app.route('/test_zone')
+def test_zone():
+    data = {
+        'title': 'Test Zone'
+    }
+    return render_template('test_zone/index.html', **data)
+
+# features: Conversation Log
+@app.route('/conversations_log')
+def conversations_log():
+    data = {
+        'title': 'Conversations'
+    }
+    return render_template('conversations_log/index.html', **data)
+
+# features: Statistics
+@app.route('/statistics')
+def statistics():
+    data = {
+        'title': 'Statistics'
+    }
+    return render_template('statistics/index.html', **data)
+
+# features: Settings
+@app.route('/settings')
+def settings():
+    data = {
+        'title': 'Settings'
+    }
+    return render_template('settings/index.html', **data)
 
 if __name__ == "__main__":
     main_app = create_app()
-    main_app.run(port=5000)
+    main_app.run(port=5000, debug=True)

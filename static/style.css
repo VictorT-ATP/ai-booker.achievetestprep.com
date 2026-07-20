@@ -5,6 +5,7 @@
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --color-light: white;
+  --color-gray: #efefef;
   --color-secondary: rgb(92, 17, 117);
   --color-medium-secondary: #d7b9e0;
   --color-light-secondary: #f9ecff;
@@ -26,6 +27,18 @@
 }
 .color-primary {
   color: var(--color-primary);
+}
+
+.bg-light-primary {
+  background: var(--color-light-primary);
+}
+
+button.bg-light-primary:hover {
+  background: var(--color-medium-primary);
+}
+
+button.bg-light-primary:active, button.bg-light-primary:focus {
+  background: var(--color-gray);
 }
 
 /* tags */
@@ -161,12 +174,23 @@ label {
   background-color: transparent;
 }
 
-.pure-menu-selected,
-.pure-menu-selected:hover,
-.pure-menu-selected:focus,
-.pure-menu-selected:focus-visible {
+.pure-menu-link.pure-menu-selected,
+.pure-menu-link.pure-menu-selected:hover,
+.pure-menu-link.pure-menu-selected:focus,
+.pure-menu-link.pure-menu-selected:focus-visible {
   background-color: var(--color-primary);
   color: var(--color-light);
+}
+
+.button-xsmall {
+  font-size: 70%;
+  border-radius: 1rem;
+}
+
+.button-secondary {
+  color: var(--color-medium-secondary);
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 [class^='fa-'] {
@@ -289,14 +313,6 @@ label {
   line-height: 1.3rem;
 }
 
- .pure-menu-link {
-   color: var(--color-secondary);
-   background-color: transparent;
-   border-radius: 7px;
-   position: relative; /* needed for the absolute ::after underline */
-   padding: 1.2rem 1rem;
- }
-
 .responsive-menu {
   width: 100%;
 }
@@ -314,6 +330,30 @@ label {
 
 .responsive-menu .pure-menu-link {
   white-space: nowrap;
+}
+
+.menu-toggle-input {
+  display: none;
+}
+
+.menu-toggle-label {
+  display: none;
+}
+
+@media screen and (max-width: 48em) {
+  .menu-toggle-label {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .responsive-menu .menu-toggle-input:not(:checked) ~ .pure-menu-list {
+    display: none;
+  }
+
+  .responsive-menu .menu-toggle-input:checked ~ .pure-menu-list {
+    display: flex;
+  }
 }
 
 .row-sm {
