@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from dotenv import load_dotenv
 from logging.config import dictConfig
 import logging
+from api.urls import api_bp
 import os
 
 load_dotenv()
@@ -37,11 +38,14 @@ dictConfig(
 app = Flask(__name__)
 
 def create_app():
+    # Urls Registration
+    app.register_blueprint(api_bp)
+    #
     app.jinja_env.variable_start_string = '[['
     app.jinja_env.variable_end_string = ']]'
     app.logger.setLevel(logging.DEBUG if os.getenv(
         "FLASK_DEBUG", "true").lower() == "true" else logging.INFO)
-    app.config['ALLOWED_HOSTS'] = os.getenv("ALLOWED_HOSTS")
+    app.config['ALLOWED_HOSTS'] = os.getenv("ALLOWED_HOSTS","")
     return app
 
 # Dashboard

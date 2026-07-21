@@ -1,2 +1,3 @@
 import os
 AI_BOOKER_API_URL = os.getenv("AI_BOOKER_API_URL","")
+AI_BOOKER_API_SECRET = os.getenv("AI_BOOKER_API_SECRET","")
