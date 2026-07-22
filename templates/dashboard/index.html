@@ -13,9 +13,27 @@
 {% endblock %}
 {% block script %}
 <template id="dashboard-template">
-    <button class="pure-button button-xsmall color-primary bg-light-primary" @click="refresh">Refresh</button>
+    <select
+            v-model="agentId" @click.stop="refresh(agentId)"
+    class="group-start color-primary bg-light-primary">
+    <option class="bg-gray-600 p-2" disabled value="-">
+        > Select Agent <
+    </option>
+    <option v-for="agent in agents" :value="agent.id" class="bg-gray-600 p-2">
+        {{agent.name}}
+    </option>
+        border: none;
+        background: var(--color-light-primary);
+        padding: .3rem;
+        border-radius: 20px;
+        font-size: .9rem;
+        text-align: right;
+        color: var(--color-primary);
+    ))}
+    </select>
+    <button class="pure-button color-primary bg-light-primary group-end" @click.stop="refresh(agentId)">Refresh</button>
 </template>
-<script type="module" src="static/js/components/dashboard.js"></script>
+<script type="module" defer src="static/js/components/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 

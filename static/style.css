@@ -12,6 +12,7 @@
   --color-lighter-secondary: #fdf6ff;
   --color-primary: rgb(243, 76, 34);
   --color-medium-primary: #ffd8ce;
+  --color-medium2-primary: #ffebe6;
   --color-light-primary: #fff7f4;
   --color-shadow: 287deg 28% 66%;
   --shadow-elevation-medium:
@@ -37,8 +38,26 @@ button.bg-light-primary:hover {
   background: var(--color-medium-primary);
 }
 
-button.bg-light-primary:active, button.bg-light-primary:focus {
-  background: var(--color-gray);
+button.bg-light-primary:active, button.bg-light-primary:focus, select:focus-visible {
+  background: var(--color-medium2-primary);
+  outline: none;
+}
+
+select {
+  border: none;
+  padding: .45em 1em;
+}
+
+option {
+  padding: var(--spacing-xs);
+}
+
+.group-start {
+  border-radius: 1rem 0 0 1rem;
+}
+
+.group-end {
+  border-radius: 0 1rem 1rem 0;
 }
 
 /* tags */
@@ -191,6 +210,10 @@ label {
   color: var(--color-medium-secondary);
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.align-right {
+  text-align: right;
 }
 
 [class^='fa-'] {

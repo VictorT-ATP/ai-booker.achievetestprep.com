@@ -8,6 +8,7 @@ flask = "*"
 dotenv = "*"
 flask-limiter = "*"
 requests = "*"
+elevenlabs = "*"
 
 [dev-packages]
 
